@@ -99,6 +99,21 @@ class PostController extends Controller
         // salvare i dati
         $new_post->save();
 
+
+        // inserisco l'attach()
+        // $new_post->tags()->attach($data['tags']);
+
+        // non basta, inserisco l'attach() con l'errore se non si dovesse spuntare niente
+
+        // //! isset — Determine if a variable is declared and is different than null
+        // if(isset($data['tags'])){
+        //     $new_post->tags()->attach($data['tags']);
+        // };
+
+        if(array_key_exists('tags',$data)){
+            $new_post->tags()->attach($data['tags']);
+        }
+
         return redirect()->route('admin.posts.index');
 
     }

@@ -14,8 +14,19 @@
         </div>
 
         <div class="p-3">
+            @forelse($post->tags as $tag)
+            <p class="btn btn-outline-success">{{$tag->name}}</p>
+            @empty  
+            <span class="alert alert-warning">
+                Non ci sono tag assegnati
+            </span>
+            @endforelse
+        </div>
+
+        <div class="p-3">
             <a href="{{route('admin.posts.index')}}" class="btn btn-primary">Torna indietro</a>
         </div>
+
     </div>
 </div>
 

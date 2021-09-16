@@ -216,6 +216,14 @@ class PostController extends Controller
         // vado a modificarli
         $post->update($data);
 
+
+        // inserisco il sync()
+        if(array_key_exists('tags', $data)){
+            $post->tags()->sync($data['tags']);
+        }
+
+
+
         // fare il return
         return redirect()->route('admin.posts.index')->with('updated', 'Il post numero ' . $post->id . ' è stato modificato con successo');
     }

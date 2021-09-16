@@ -153,7 +153,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
-        return view('admin.posts.edit', compact('post', 'categories'));
+        $tags = Tag::all();
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -228,6 +229,9 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
             $post->delete();
+
+            // effettuo il detach();
+            $post->tags()->detach();
 
             return redirect()->route('admin.posts.index')->with('deleted', 'Il post numero ' . $post->id . ' è stato eliminato con successo');
     }

@@ -78,7 +78,10 @@
 
             {{-- inserisco un contatore dinamico nell'id e nel for (loop->iteration()). Se analizziamo nel browser questa sezione, si può vedere come i tag degli imput e delle label aumentano dinamicamente --}}
 
-            <input class="form-check-input" type="checkbox" value="{{$tag->id}}" id="tag {{$loop->iteration}}" name="tags[]">
+            <input class="form-check-input" type="checkbox" value="{{$tag->id}}" id="tag {{$loop->iteration}}" name="tags[]"
+            @if(in_array($tag->id, old('tags', []))) 
+            checked 
+            @endif>
 
             {{-- nell'input ho inserito il name="tags[]". Questo perché non sempre si passerà un solo elemento, ma si potranno passare più elementi, quindi ci sarà bisogno di un array di elementi. --}}
 

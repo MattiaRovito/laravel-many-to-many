@@ -75,13 +75,18 @@
           <h3>Tag</h3>
           @foreach ($tags as $tag)
           <div class="form-check d-inline-block mx-1 my-2">
-            {{-- inserisco un contatore dinamico nell'id e nel for (loop->iteration()) --}}
-            <input class="form-check-input" type="checkbox" value="{{$tag->id}}" id="tag {{$loop->iteration}}" >
+
+            {{-- inserisco un contatore dinamico nell'id e nel for (loop->iteration()). Se analizziamo nel browser questa sezione, si può vedere come i tag degli imput e delle label aumentano dinamicamente --}}
+
+            <input class="form-check-input" type="checkbox" value="{{$tag->id}}" id="tag {{$loop->iteration}}" name="tags[]">
+
+            {{-- nell'input ho inserito il name="tags[]". Questo perché non sempre si passerà un solo elemento, ma si potranno passare più elementi, quindi ci sarà bisogno di un array di elementi. --}}
+
             <label class="form-check-label" for="tag {{$loop->iteration}}">
               {{$tag->name}}
             </label>
+
           </div>
-          
           @endforeach
         </div>
 

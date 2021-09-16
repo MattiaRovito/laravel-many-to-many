@@ -20,4 +20,11 @@ class Post extends Model
         // N.B.: belongsTo-> singolare (infatti category). Ovvero, un determinato post è scritto da un solo utente.
         return $this->belongsTo('App\Category');
     }
+
+
+    //* Many-To-Many
+
+    public function tags(){
+        return $this->belongsToMany('App\Tag');
+    }
 }

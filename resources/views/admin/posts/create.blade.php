@@ -69,7 +69,24 @@
           @enderror
          
         </div>
-        
+
+
+        <div>
+          <h3>Tag</h3>
+          @foreach ($tags as $tag)
+          <div class="form-check d-inline-block mx-1 my-2">
+            {{-- inserisco un contatore dinamico nell'id e nel for (loop->iteration()) --}}
+            <input class="form-check-input" type="checkbox" value="{{$tag->id}}" id="tag {{$loop->iteration}}" >
+            <label class="form-check-label" for="tag {{$loop->iteration}}">
+              {{$tag->name}}
+            </label>
+          </div>
+          
+          @endforeach
+        </div>
+
+
+
      
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

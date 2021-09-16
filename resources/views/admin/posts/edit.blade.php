@@ -45,7 +45,7 @@
             @endif
           </p> --}}
           <label for="categorie" class="form-label">Categorie</label>
-          <select name="categories_id" id="categorie" class="form-control">
+          <select name="category_id" id="categorie" class="form-control">
             <option value="">Seleziona una categoria</option>
             @foreach ($categories as $category )
                 <option value="{{$category->id}}"

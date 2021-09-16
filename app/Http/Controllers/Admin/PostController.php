@@ -176,9 +176,11 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|max:60',
             'content' => 'required',
-            'category_id' => 'nullable|exists:categories_id'
+            'category_id' => 'nullable|exists:categories,id'
             // ovvero category_id deve essere messo a null o deve esistere e preso dalla categoria di appartenenza
         ]);
+
+        
 
 
 
@@ -186,6 +188,8 @@ class PostController extends Controller
         // prendere tutti i dati
         $data = $request->all();
 
+
+        // dd($data);
 
         // Se è stato modificato aggiungi questo. Permette di aggiungere un -numero se è già esistente il titolo modificato. 
         if($data['title'] != $post->title){
@@ -199,14 +203,11 @@ class PostController extends Controller
             $contatore = 1;
             while($slug_presente){
                 // aggiungiamo al post di prima un -contatore
-                $slug = $slug_base . '-' . $contatore;
+                $slug = $slug_base . '-' . $contatore++;
                 // se lo slug è uguale ad uno già presente allora segue il procedimento sotto
 
                 // controlliamo nuovamente se il post esiste ancora
-                $slug_presente = Post::where('slug',  $slug)->first();
-
-                // incrementiamo il contatore
-                $contatore++;
+                $slug_presente = Post::where('slug',  $slug)->first();              
             }
 
             // in ogni caso, sia se è entrato nel ciclo sia no, farà questo
@@ -215,9 +216,10 @@ class PostController extends Controller
         }   
 
 
-        
+       
         // vado a modificarli
         $post->update($data);
+      
 
 
         // inserisco il sync()

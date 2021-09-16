@@ -18,7 +18,7 @@ class Post extends Model
         // il $this indica proprio la categoria, in questo caso Posts.
 
         // N.B.: belongsTo-> singolare (infatti category). Ovvero, un determinato post è scritto da un solo utente.
-        return $this->belongsTo('App\Category');
+        return $this->belongsTo('App\Category','category_id', 'id');
     }
 
 

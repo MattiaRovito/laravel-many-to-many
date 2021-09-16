@@ -38,6 +38,7 @@
                     <th scope="row">{{$post->id}}</th>
                     <td>{{$post->title}}</td>
                     <td>
+                        {{-- @dd($post->category) --}}
                         @if($post->category)
                         {{$post->category->name}}
                         @endif
